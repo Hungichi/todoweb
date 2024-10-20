@@ -1,0 +1,40 @@
+/* src/components/Footer.css */
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+    align-items: flex-start; /* Căn trái nội dung */
+    gap: 10px;
+    padding-left: 20px; /* Đẩy nội dung sang trái một chút */
+  }
+  
+  .footer-info p {
+    margin: 5px 0; /* Khoảng cách giữa tên web và email */
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px; /* Khoảng cách giữa các icon */
+  }
+  
+  .social-icons a {
+    color: #fff;
+    font-size: 24px;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #1da1f2; /* Màu xanh khi hover */
+  }
+  

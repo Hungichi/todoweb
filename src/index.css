@@ -1,0 +1,588 @@
+
+/* src/index.css */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f5f7;
+}
+
+/* styles.css */
+.boards-page {
+  padding: 20px;
+}
+
+.create-board-btn {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #0079bf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.background-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.background-option {
+  width: 60px;
+  height: 60px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.background-option.selected {
+  border-color: #0079bf; /* Màu viền khi chọn */
+}
+
+.boards-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.board-link {
+  width: 200px;
+  height: 100px;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.board-item {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Nền mờ cho tiêu đề */
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-board-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.new-board-input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.create-btn, .cancel-btn {
+  margin-top: 5px;
+  flex: 1;
+  padding: 10px 2px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button styles */
+.create-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.create-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.cancel-btn:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* Background selection styles */
+.background-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.background-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.background-option.selected {
+  border-color: #4caf50;
+}
+.board {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 1rem;
+  height: 100vh; /* Đảm bảo chiếm hết chiều cao màn hình */
+  width: 100vw;  /* Đảm bảo chiếm hết chiều rộng màn hình */
+  background-size: cover; /* Ảnh nền bao phủ toàn bộ phần tử */
+  background-position: center; /* Căn giữa ảnh nền */
+  background-repeat: no-repeat; /* Không lặp lại ảnh */
+  transition: background-image 0.3s ease-in-out;
+}
+.board-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.add-board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  width: 300px;
+}
+
+.add-board input {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.add-board select {
+  padding: 8px;
+}
+
+.add-board button {
+  padding: 8px;
+  background-color: #0079bf;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-board button:hover {
+  background-color: #005a8c;
+}
+.background-selector {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 8px;
+}
+.list {
+  width: 300px; /* Đặt kích thước cố định cho danh sách */
+  margin-right: 1rem;
+  background-color: #f4f5f7;
+  padding: 0.5rem;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* Ngăn danh sách bị thu nhỏ */
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px; /* Kích thước biểu tượng */
+}
+
+.menu {
+  position: absolute; /* Đặt vị trí cho menu */
+  background-color: white; /* Màu nền menu */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ cho menu */
+  z-index: 1000; /* Để menu ở trên các phần tử khác */
+  margin-top: 5px; /* Khoảng cách giữa header và menu */
+}
+
+.menu button {
+  background: none; /* Nền trong suốt cho nút */
+  border: none; /* Không viền */
+  cursor: pointer; /* Con trỏ khi hover */
+  padding: 5px 10px; /* Padding cho nút */
+  width: 100%; /* Chiều rộng nút 100% */
+  text-align: left; /* Canh trái cho chữ */
+}
+
+.menu button:hover {
+  background-color: #f0f0f0; /* Màu nền khi hover */
+}
+.add-list {
+  width: 300px; /* Đảm bảo nút thêm danh sách có cùng kích thước */
+  flex-shrink: 0; /* Không cho phép nút thêm bị thu nhỏ */
+}
+
+.lists {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.add-list-btn {
+  background-color: #dfe3e6;
+  color: #333;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 300px;
+  text-align: left;
+}
+
+.add-list input {
+  width: 280px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.actions button {
+  padding: 0.5rem;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.actions button:first-child {
+  background-color: #5aac44;
+  color: white;
+  border: none;
+}
+
+.actions button:last-child {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+
+
+.card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 12px;
+  width: 250px; /* Tùy chỉnh chiều rộng */
+  height: auto; /* Để chiều cao tự điều chỉnh */
+  word-wrap: break-word; /* Đảm bảo từ dài không tràn */
+  word-break: break-word;
+  white-space: normal; /* Cho phép xuống dòng bình thường */
+  overflow-wrap: break-word; /* Đề phòng từ quá dài */
+}
+.edit-icon-container {
+  position: absolute;
+  top: 10px; /* Cách mép trên */
+  right: 10px; /* Cách mép bên phải */
+  width: 30px; /* Đường kính hình tròn */
+  height: 30px; /* Đường kính hình tròn */
+  border-radius: 50%; /* Tạo hình tròn */
+  background-color: gray; /* Màu nền xám */
+  display: flex; /* Để căn giữa biểu tượng */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  transition: opacity 0.3s; /* Hiệu ứng chuyển động mượt mà */
+}
+
+.edit-icon {
+  color: white; /* Màu biểu tượng */
+  font-size: 16px; /* Kích thước biểu tượng */
+}
+
+.hidden {
+  opacity: 0; /* Ẩn */
+  visibility: hidden; /* Ẩn hoàn toàn */
+}
+
+.visible {
+  opacity: 1; /* Hiện */
+  visibility: visible; /* Hiện hoàn toàn */
+}
+
+.card-image {
+  width: 100%; /* Điều chỉnh kích thước theo ý muốn */
+  height: auto; /* Tự động điều chỉnh chiều cao */
+  border-radius: 8px 8px 0 0; /* Bo góc cho ảnh */
+}
+.add-card-container {
+  margin-top: 8px;
+}
+
+.add-new-card {
+  color: #0079bf;
+  cursor: pointer;
+  padding: 4px;
+  transition: background-color 0.3s;
+
+}
+
+.add-new-card:hover {
+  background-color: #e4f0f6;
+  border-radius: 4px;
+}
+
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-input {
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 3px 12px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-btn {
+  background-color: #5aac44;
+  color: white;
+}
+
+.add-btn:hover {
+  background-color: #519839;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #d4d4d4;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: auto;
+}
+
+.popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+/* Overlay che toàn màn hình */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* Nền mờ tối */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Nội dung modal căn giữa */
+.modal-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.3s ease; /* Hiệu ứng mờ */
+}
+
+.modal-content h2 {
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Các ô input */
+.modal-content input[type="text"],
+.modal-content input[type="date"] {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+/* Hiệu ứng khi input được chọn */
+.modal-content input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Button đẹp hơn */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #e53935;
+}
+
+.delete-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #fb8c00;
+}
+
+/* Hiệu ứng mờ khi modal hiện ra */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-deadline {
+  font-size: 12px;
+  color: #757575;
+  margin-top: 4px;
+}
