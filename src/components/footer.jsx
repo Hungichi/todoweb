@@ -1,6 +1,6 @@
 // src/components/Footer.jsx
 import React from 'react';
-import './Footer.css'; // Import CSS đã sửa
+import './footer.css'; // Import CSS đã sửa
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {

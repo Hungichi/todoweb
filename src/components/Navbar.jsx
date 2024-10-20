@@ -34,8 +34,8 @@ const Navbar = () => {
       </h1>
       <div className="nav-links">
         <Link to="/" style={navLinkStyle}>Home</Link>
-        <Link to="/signup" style={navLinkStyle}>Đăng Ký</Link> {/* Thêm liên kết Đăng Ký */}
-        <Link to="/login" style={navLinkStyle}>Đăng Nhập</Link> {/* Thêm liên kết Đăng Nhập */}
+        <Link to="/signup" style={navLinkStyle}>Register</Link> {/* Thêm liên kết Đăng Ký */}
+        <Link to="/login" style={navLinkStyle}>Login</Link> {/* Thêm liên kết Đăng Nhập */}
       </div>
     </nav>
   );

@@ -1,19 +1,25 @@
-// src/components/Login.jsx
 import React, { useState } from 'react';
-import { auth } from '../firebase'; // Đường dẫn đến tệp firebase.js
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import './Login.css'; // Đảm bảo bạn có tệp CSS này
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      // Xử lý đăng nhập (Firebase)
       alert('Đăng nhập thành công!');
-      // Bạn có thể chuyển hướng đến trang khác hoặc làm gì đó khác ở đây
+      navigate('/home');
     } catch (error) {
       alert(error.message);
     }
@@ -21,22 +27,33 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Đăng Nhập</h2>
+      <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Mật khẩu"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div className="input-wrapper">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="input-wrapper">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Mật khẩu"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <FontAwesomeIcon
+            icon={showPassword ? faEyeSlash : faEye}
+            className="eye-icon"
+            onClick={togglePasswordVisibility}
+          />
+        </div>
+
         <button type="submit">Đăng Nhập</button>
       </form>
     </div>

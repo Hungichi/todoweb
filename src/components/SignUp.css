@@ -13,12 +13,27 @@
   color: #333;
 }
 
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
 .signup-container input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  padding-right: 40px; /* Chừa khoảng trống cho icon */
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
 }
 
 .signup-container button {
@@ -33,4 +48,26 @@
 
 .signup-container button:hover {
   background-color: #357abd;
+}
+.signup-container .input-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.signup-container input {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Chừa khoảng trống cho icon */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
 }
