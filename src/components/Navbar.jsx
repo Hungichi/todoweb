@@ -24,14 +24,14 @@ const Navbar = ({ user, setUser }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span>{userName}</span>
             <button className="logout-button" onClick={handleLogout}>
-            Đăng Xuất
+            Logout
           </button>
           </div>
         ) : (
           <>
             
-            <Link to="/login" style={{ margin: '0 10px', color: 'white', textDecoration: 'none' }}>Đăng Nhập</Link>
-            <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}>Đăng Ký</Link>
+            <Link to="/login" style={{ margin: '0 10px', color: 'white', textDecoration: 'none' }}>Login</Link>
+            <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}>Register</Link>
           </>
         )}
       </div>
