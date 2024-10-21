@@ -30,8 +30,8 @@ const Navbar = ({ user, setUser }) => {
         ) : (
           <>
             
-            <Link to="/login" style={{ margin: '0 10px', color: 'white', textDecoration: 'none' }}>Login</Link>
-            <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}>Register</Link>
+            <Link to="/login" style={{ marginTop: '5px', color: 'white', textDecoration: 'none' }}>Login</Link>
+            <Link to="/signup" style={{marginTop: '5px',marginLeft:"5px", color: 'white', textDecoration: 'none' }}>Register</Link>
           </>
         )}
       </div>
