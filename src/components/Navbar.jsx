@@ -19,7 +19,7 @@ const Navbar = ({ user, setUser }) => {
       <h1>To Do App</h1>
       
       <div style={{display:"flex"}}>
-      <Link to="/" style={{ padding-top:"5px", padding-right:"5px", color: 'white', textDecoration: 'none' }}>Home</Link>
+      <Link to="/" style={{ paddingTop:"5px", paddingRight:"5px", color: 'white', textDecoration: 'none' }}>Home</Link>
         {user ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span>{userName}</span>
