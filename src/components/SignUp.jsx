@@ -21,18 +21,18 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Mật khẩu không khớp!');
+      alert('Wrong confirm password!');
       return;
     }
     try {
       // Tạo tài khoản mới
       await createUserWithEmailAndPassword(auth, email, password);
-      alert(`Chào mừng, ${username}! Đăng ký thành công.`);
+      alert(`Wellcome, ${username}! Register successfull.`);
       navigate('/login'); // Chuyển đến trang đăng nhập
     } catch (error) {
       // Kiểm tra lỗi cụ thể
       if (error.code === 'auth/email-already-in-use') {
-        alert('Email này đã được sử dụng.');
+        alert('Email already used.');
       } else {
         alert(error.message);
       }
