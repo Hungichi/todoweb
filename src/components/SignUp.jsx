@@ -41,12 +41,12 @@ const SignUp = () => {
 
   return (
     <div className="signup-container">
-      <h2>Đăng Ký</h2>
+      <h2>Register</h2>
       <form onSubmit={handleSignUp}>
         <div className="input-wrapper">
           <input
             type="text"
-            placeholder="Tên người dùng"
+            placeholder="User name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -66,7 +66,7 @@ const SignUp = () => {
         <div className="input-wrapper">
           <input
             type={showPassword ? 'text' : 'password'}
-            placeholder="Mật khẩu"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -81,7 +81,7 @@ const SignUp = () => {
         <div className="input-wrapper">
           <input
             type={showPassword ? 'text' : 'password'}
-            placeholder="Xác nhận mật khẩu"
+            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -93,7 +93,7 @@ const SignUp = () => {
           />
         </div>
 
-        <button type="submit">Đăng Ký</button>
+        <button type="submit">Register</button>
       </form>
     </div>
   );
