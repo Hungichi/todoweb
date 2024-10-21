@@ -1,45 +1,42 @@
 // src/components/Navbar.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
 
-const Navbar = () => {
-  const navbarStyle = {
+const Navbar = ({ user, setUser }) => {
+  const navigate = useNavigate();
 
-    top: 0,
-    left: 0,
-    width: '100%',
-    backgroundColor: '#4a90e2',
-    color: 'white',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px 20px',
-    zIndex: 1000,
+  const handleLogout = () => {
+    auth.signOut();
+    setUser(null); // Xóa trạng thái user sau khi đăng xuất
+    navigate('/'); // Quay lại trang chủ sau khi đăng xuất
   };
 
-  const navLinkStyle = {
-    color: 'white',
-    textDecoration: 'none',
-    marginLeft: '15px',
-  };
-
-  const navLinkHoverStyle = {
-    textDecoration: 'underline',
-  };
+  const userName = user ? user.email.split('@')[0] : ''; // Lấy tên trước '@'
 
   return (
-    <nav style={navbarStyle}>
-      <h1>
-        To Do App
-      </h1>
-      <div className="nav-links">
-        <Link to="/" style={navLinkStyle}>Home</Link>
-        <Link to="/signup" style={navLinkStyle}>Register</Link> {/* Thêm liên kết Đăng Ký */}
-        <Link to="/login" style={navLinkStyle}>Login</Link> {/* Thêm liên kết Đăng Nhập */}
+    <nav style={{ backgroundColor: '#4a90e2', padding: '10px 20px', color: 'white', display: 'flex', justifyContent: 'space-between' }}>
+      <h1>To Do App</h1>
+      
+      <div style={{display:"flex"}}>
+      <Link to="/" style={{  color: 'white', textDecoration: 'none' }}>Home</Link>
+        {user ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span>{userName}</span>
+            <button className="logout-button" onClick={handleLogout}>
+            Đăng Xuất
+          </button>
+          </div>
+        ) : (
+          <>
+            
+            <Link to="/login" style={{ margin: '0 10px', color: 'white', textDecoration: 'none' }}>Đăng Nhập</Link>
+            <Link to="/signup" style={{ color: 'white', textDecoration: 'none' }}>Đăng Ký</Link>
+          </>
+        )}
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-

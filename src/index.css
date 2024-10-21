@@ -586,3 +586,80 @@ body {
   color: #757575;
   margin-top: 4px;
 }
+.logout-button {
+  background-color: #e74c3c; /* Màu nền đỏ */
+  color: white; /* Màu chữ trắng */
+  border: none; /* Không viền */
+  border-radius: 5px; /* Bo góc */
+  padding: 8px 15px; /* Khoảng cách bên trong */
+  cursor: pointer; /* Hiển thị con trỏ tay */
+  font-size: 12px; /* Kích thước chữ */
+  transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển đổi */
+}
+
+.logout-button:hover {
+  background-color: #e67265; /* Màu nền khi hover */
+  transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.board-info-bar {
+  width: 100%; /* Đảm bảo chiều rộng tối đa */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Màu nền cho thanh thông tin */
+  padding: 10px;
+  position: absolute; /* Để giữ thanh ở trên cùng của thẻ chứa */
+  top: 0; /* Định vị thanh ở trên cùng */
+  left: 0; /* Đảm bảo nó bắt đầu từ phía bên trái */
+  z-index: 1; /* Đảm bảo thanh thông tin nằm trên cùng */
+}
+
+.delete-board-btn {
+  margin-right: px;
+  padding: 5px 15px; /* Padding cho nút xóa */
+  background-color: #e74c3c; /* Màu nền cho nút xóa */
+  color: white; /* Màu chữ cho nút xóa */
+  border: none; /* Bỏ viền */
+  border-radius: 5px; /* Bo góc */
+  cursor: pointer; /* Con trỏ khi hover */
+}
+
+.delete-board-btn:hover {
+  background-color: #c0392b; /* Màu nền khi hover */
+}
+.board-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.list-container {
+  display: flex;                /* Sử dụng Flexbox để sắp xếp các list ngang */
+  overflow-x: auto;            /* Cho phép cuộn ngang khi cần */
+  padding: 10px 0;             /* Thêm padding trên và dưới */
+  align-items: flex-start;  
+  min-height: 93%;
+}
+
+.list-container > div {
+  display: inline-block; /* Hiển thị các list theo chiều ngang */
+}
+
+.list-container::-webkit-scrollbar {
+  height: 10px; /* Chiều cao của thanh cuộn ngang */
+}
+
+.list-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2); /* Màu nền của track */
+  border-radius: 10px; /* Bo tròn track */
+}
+
+.list-container::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0); /* Màu của thumb */
+  border-radius: 10px; /* Bo tròn thumb */
+}
+
+.list-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.8); /* Màu khi hover */
+}

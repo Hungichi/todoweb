@@ -3,10 +3,11 @@ import List from './List';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import AddList from './AddList';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Board = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const background = location.state?.background || '/images/backgrounds/bg1.jpg';
 
   // Load boards từ localStorage
@@ -116,36 +117,62 @@ const Board = () => {
     });
   };
 
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <div
-        className="board"
-        style={{
-          backgroundImage: `url(${background})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          minHeight: '100vh',
-          minWidth: '100vw',
-          overflow: 'hidden',
-        }}
-      >
-        {currentBoard.lists.map((list) => (
-          <List
-            key={list.id}
-            list={list}
-            onAddCard={addCardToList}
-            onEditCard={editCard}
-            onDeleteCard={deleteCard}
-            moveCard={moveCard}
-            onEditListTitle={editListTitle}
-            onDeleteList={deleteList}
-          />
-        ))}
-        <AddList onAddList={addList} />
+  // Hàm xóa board
+  const handleDeleteBoard = () => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa board này?')) {
+      const updatedBoards = boards.filter(board => board.id !== currentBoard.id);
+      localStorage.setItem('boards', JSON.stringify(updatedBoards));
+      localStorage.removeItem('currentBoard');
+      navigate('/boards'); // Quay về BoardsPage
+    }
+  };
+
+ return (
+  <DndProvider backend={HTML5Backend}>
+    <div
+      className="board"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
+        minWidth: '100vw',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Thẻ chứa lớn với background */}
+      <div className="board-container" style={{ position: 'relative', paddingTop: '60px' }}>
+        {/* Thanh thông tin board */}
+        <div className="board-info-bar">
+          <h2>{currentBoard.title}</h2>
+          <button className="delete-board-btn" onClick={handleDeleteBoard}>
+            Xóa Board
+          </button>
+        </div>
+
+        {/* Container để render danh sách */}
+        <div className="list-container">
+          {currentBoard.lists.map((list) => (
+            <List
+              key={list.id}
+              list={list}
+              onAddCard={addCardToList}
+              onEditCard={editCard}
+              onDeleteCard={deleteCard}
+              moveCard={moveCard}
+              onEditListTitle={editListTitle}
+              onDeleteList={deleteList}
+            />
+          ))}
+          <AddList onAddList={addList} />
+        </div>
       </div>
-    </DndProvider>
-  );
+    </div>
+  </DndProvider>
+);
+
+  
 };
 
 export default Board;

@@ -1,34 +1,46 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+// App.jsx
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import BoardsPage from './components/BoardsPage';
 import Board from './components/Board';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Footer from './components/footer';  
+import { auth } from './firebase'; 
 
-function AppContent() {
-  const location = useLocation();  // Lấy thông tin đường dẫn hiện tại
-  const showFooter = !location.pathname.startsWith('/board');  // Ẩn footer nếu URL bắt đầu bằng "/board"
+function AppContent({ user, setUser }) {
+  const location = useLocation();
+  const showFooter = !location.pathname.startsWith('/board');
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser); // Cập nhật trạng thái người dùng
+    });
+
+    return () => unsubscribe(); // Hủy đăng ký listener khi component unmount
+  }, [setUser]);
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <Routes>
-        <Route path="/" element={<BoardsPage />} />  {/* Trang chính */}
-        <Route path="/board/:id" element={<Board />} />  {/* Trang board với id thay đổi */}
-        <Route path="/signup" element={<SignUp />} />  {/* Đăng ký */}
-        <Route path="/login" element={<Login />} />  {/* Đăng nhập */}
+        <Route path="/" element={<BoardsPage />} />
+        <Route path="/board/:id" element={<Board />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
       </Routes>
-      {showFooter && <Footer />}  {/* Footer ẩn khi ở trang Board */}
+      {showFooter && <Footer />}
     </div>
   );
 }
 
 function App() {
+  const [user, setUser] = useState(null); // Quản lý trạng thái người dùng
+
   return (
     <Router>
-      <AppContent />  {/* AppContent chứa toàn bộ logic bên trong Router */}
+      <AppContent user={user} setUser={setUser} />
     </Router>
   );
 }
